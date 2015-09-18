@@ -1,0 +1,272 @@
+﻿<dx:DXWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:EnglishDX"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+     xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+    xmlns:dxnb="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    x:Class="EnglishDX.MainWindow"
+    Title="EnglishBase" Height="720" Width="1100"
+    SnapsToDevicePixels="True" UseLayoutRounding="True"
+    
+    >
+    <dx:DXWindow.Resources>
+        <SolidColorBrush x:Key="IsEasyColor" Color="#FF04F170"/>
+        <SolidColorBrush x:Key="IsRightAnswerColor" Color="#FFF0A7E2"/>
+        <dx:BoolToVisibilityConverter x:Key="BoolToVisibleConverter"/>
+    </dx:DXWindow.Resources>
+    <!--<dx:DXWindow.DataContext>
+        <local:ViewModel/>
+    </dx:DXWindow.DataContext>-->
+    <dxmvvm:Interaction.Triggers>
+        <dxmvvm:EventToCommand Command="{Binding HandleKeyDownCommand}" EventName="PreviewKeyDown" PassEventArgsToCommand="True"/>
+    </dxmvvm:Interaction.Triggers>
+    <dxlc:LayoutControl x:Name="layoutControl" Focusable="True" >
+        <!--<dxmvvm:Interaction.Triggers>
+            <dxmvvm:EventToCommand Command="{Binding HandleKeyDownCommand}" EventName="PreviewKeyDown" PassEventArgsToCommand="True"/>
+        </dxmvvm:Interaction.Triggers>-->
+        <dxlc:LayoutGroup Orientation="Vertical">
+            <dxlc:LayoutGroup View="Tabs" SelectedTabIndex="{Binding SelectedTabIndex,Mode=TwoWay}" >
+                <dxlc:LayoutGroup Header="Work">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <!--CurrentWord-->
+                            <Border BorderThickness="2" Margin="5"   BorderBrush="Blue">
+
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentWord.IsRightAnswer}" Value="False">
+                                                <Setter Property="Background" Value="{StaticResource IsRightAnswerColor}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CurrentWord.IsEasy}" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource IsEasyColor}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid MaxHeight="{Binding ActualHeight,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Border}}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition  />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <UniformGrid Rows="0" Columns="1" Grid.Row="1">
+                                        <Viewbox>
+                                            <Label Content="{Binding CurrentWord.Word}" 
+      
+                   FontWeight="Bold" />
+                                        </Viewbox>
+                                    </UniformGrid>
+                                    <TextBlock Text="{Binding CurrentWord.Example}" Grid.Row="2" FontSize="30" Visibility="{Binding IsCurrentWordExampleVisible,Converter={StaticResource BoolToVisibleConverter}}" TextWrapping="Wrap"/>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <!--OldWord-->
+                            <Border BorderThickness="2" Margin="5"  BorderBrush="Blue">
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding OldWord.IsRightAnswer}" Value="False">
+                                                <Setter Property="Background" Value="{StaticResource IsRightAnswerColor}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding OldWord.IsEasy}" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource IsEasyColor}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid MaxHeight="{Binding ActualHeight,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Border}}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition  />
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <dxe:CheckEdit EditValue="{Binding OldWord.IsEasy,Mode=TwoWay}" Content="IsEasy" Grid.Row="0" />
+                                    <UniformGrid Rows="0" Columns="1" Grid.Row="1">
+                                        <Viewbox>
+                                            <Label Content="{Binding OldWord.Word}" 
+      
+                   FontWeight="Bold" />
+                                        </Viewbox>
+                                        <Viewbox >
+                                            <Label Content="{Binding OldWord.Translate}" HorizontalAlignment="Center" FontWeight="Bold"    />
+                                        </Viewbox>
+                               
+
+                                    <TextBlock Text="{Binding OldWord.Example}" Grid.Row="2" FontSize="30"  TextWrapping="Wrap"/>
+                                    </UniformGrid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Border BorderBrush="Blue" BorderThickness="2" Grid.Row="2" Margin="5" Visibility="Visible">
+                                <dxlc:LayoutGroup Orientation="Horizontal" >
+                                    <dxlc:LayoutItem Label="ExamCount">
+                                        <TextBlock Text="{Binding ListWordsForWork.Count}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="CompleteToday">
+                                        <TextBlock Text="{Binding CurrentDayItem.CompleteToday}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="TimesOfApproaches">
+                                        <TextBlock Text="{Binding CurrentDayItem.CompleteApproaches}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="LastAnswerTime">
+                                        <TextBlock Text="{Binding CurrentDayItem.LastAnswerTime,StringFormat={}{0:HH:mm}}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="AnswerToday">
+                                        <dxe:ProgressBarEdit EditValue="{Binding  CurrentDayItem.AnswerAll}" Maximum="360" ContentDisplayMode="Value"  />
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="RightAnswers">
+                                        <dxe:ProgressBarEdit EditValue="{Binding CurrentDayItem.AnswerRight}"
+                                                             Maximum="{Binding CurrentDayItem.AnswerAll}" Minimum="0"
+                                                             ContentDisplayMode="Value" IsPercent="True" DisplayFormatString=" {0:p}" >
+                                        </dxe:ProgressBarEdit>
+                                    </dxlc:LayoutItem>
+                                    <StackPanel Orientation="Horizontal">
+                                        <dxe:ProgressBarEdit Minimum="0" Maximum="100" ContentDisplayMode="Value" IsPercent="False" 
+                                                                 Width="80"
+                                                                 EditValue="{Binding CurrentWordsCount}"   />
+                                        <Button Content="Reset" Command="{Binding ResetCurrentWordsCommand}" Grid.Column="1" Width="40"/>
+                                </StackPanel>
+                                   <!-- <dxlc:LayoutItem Label="Mode" Width="80">
+                                        <TextBlock Text="{Binding WorkMode}"/>
+                                    </dxlc:LayoutItem>-->
+                                </dxlc:LayoutGroup>
+                        </Border>
+                    </Grid>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="Words">
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <!--<StackPanel Height="24" Orientation="Horizontal">
+                            <dxe:ListBoxEdit ItemsSource="{dxe:EnumItemsSource EnumType=local:WorkModes}" EditValue="{Binding WorkMode,Mode=TwoWay}">
+                                <dxe:ListBoxEdit.StyleSettings>
+                                    <dxe:RadioListBoxEditStyleSettings/>
+                                </dxe:ListBoxEdit.StyleSettings>
+                                <dxe:ListBoxEdit.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </dxe:ListBoxEdit.ItemsPanel>
+                            </dxe:ListBoxEdit>
+                            <Button Content="updatedata" Height="24" Command="{Binding UpdateDataCommand}" Margin="20,0,0,0"/>
+                            
+                        </StackPanel>-->
+                        <dxlc:LayoutGroup >
+                            <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="gr2" ItemsSource="{Binding ListAllWords}" 
+                                              CurrentItem="{Binding CurrentWordForAllWordsGrid,Mode=TwoWay}"
+                                           
+                                         AllowLiveDataShaping="True"
+                                              CurrentItemChanged="gr2_CurrentItemChanged_1" 
+                                              >
+                                <dxg:GridControl.Columns>
+
+                                    <dxg:GridColumn FieldName="IsEasy" Width="30"/>
+                                    <dxg:GridColumn FieldName="Word" SortOrder="Ascending" />
+                                    <dxg:GridColumn FieldName="Translate"/>
+                                    <dxg:GridColumn FieldName="Example"/>
+                                    <dxg:GridColumn FieldName="LastRightAnswers"  Width="37" Header="Last" FixedWidth="True" />
+                                    <dxg:GridColumn FieldName="Complexity" Width="37"/>
+                                    <dxg:GridColumn FieldName="IsAnswered" Width="37" Header="Answered" FixedWidth="True"/>
+                                    <!--<dxg:GridColumn FieldName="AllAnswers" ReadOnly="True" Width="37" Header="All" FixedWidth="True" VisibleIndex="7"/>
+                                    <dxg:GridColumn FieldName="AllRightAnswers" ReadOnly="True" Width="37" Header="Right" FixedWidth="True" VisibleIndex="8"/>-->
+                                    <dxg:GridColumn FieldName="IsChanged" Width="30" Header="ch" ReadOnly="True"/>
+                                    <!--<dxg:GridColumn FieldName="LastRightAnswers"/>-->
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="Word" ShowInColumn="Word" SummaryType="Count"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowSearchPanelMode="Always" AutoWidth="True"
+                                                   ShowTotalSummary="True"
+                                                   ShowGroupPanel="False" SearchString="{Binding GrdAllWordsSearchString,Mode=TwoWay}" SearchDelay="100"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                            <!--<DataGrid ItemsSource="{Binding ListAllWords}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Word}"/>
+                                        <DataGridTextColumn Binding="{Binding Translate}"/>
+                                        <DataGridTextColumn Binding="{Binding Example}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>-->
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutGroup>
+                                <DataGrid ItemsSource="{Binding ListLastAnswers}" AutoGenerateColumns="False" Width="150" Height="250" HorizontalAlignment="Left">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding}" Header="Result" IsReadOnly="False"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Width="200">
+                                <dxlc:LayoutItem Label="WordBeforeEnd">
+                                    <Label Content="{Binding WordsBeforeEnd}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <Button Content="Save changes" Height="20" Command="{Binding SaveChangesInWordsCommand}"/>
+                                <Button Content="Delete word" Height="20" Command="{Binding DeleteWordCommand}"/>
+                                <dxlc:LayoutItem Label="NewWord">
+                                    <dxe:TextEdit EditValue="{Binding NewWordToEnter.Word,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Translate">
+                                    <dxe:TextEdit EditValue="{Binding NewWordToEnter.Translate,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Example">
+                                    <dxe:TextEdit EditValue="{Binding NewWordToEnter.Example, Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+                                <Button Content="EnterNewWord" Height="25" Command="{Binding EnterNewWordCommand}"/>
+                                <Button Content="OpenInWeb" Height="25" Command="{Binding OpenCurrentItemOnWebCommand}"/>
+                                <dxlc:LayoutItem Label="AllHardWords:">
+                                    <Label Content="{Binding HardWordsCount}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+
+                        </dxlc:LayoutGroup>
+                        <!--<Button Content="test" Click="Button_Click_1"/>-->
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="EnterNewWords">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <dxg:GridControl ItemsSource="{Binding ListWordsFromClipboard}" >
+                            <dxmvvm:Interaction.Triggers>
+                                <dxmvvm:EventToCommand Command="{Binding PastingNewWordsCommand}" EventName="PastingFromClipboard" />
+                            </dxmvvm:Interaction.Triggers>
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="Word" Width="50"/>
+                                <dxg:GridColumn FieldName="Translate" Width="70"/>
+                                <dxg:GridColumn FieldName="Example"/>
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView AutoWidth="True"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                        <Button Content="Enter new words"  Grid.Row="1" Height="50"  Command="{Binding EnterPastedWordsToBaseCommand}"/>
+                    </Grid>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="Statistic">
+                    <dxg:GridControl ItemsSource="{Binding DayStatItems}" AutoGenerateColumns="AddNew"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutControl>
+
+</dx:DXWindow>
+    

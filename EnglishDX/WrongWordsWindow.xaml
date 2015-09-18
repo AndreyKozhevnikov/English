@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="EnglishDX.WrongWordsWindow"
+       Height="700" Width="1500">
+    <Grid>
+
+        <dxe:ListBoxEdit ItemsSource="{Binding ListWrongAnsweredWords}" Background="#FFA3C3EC" ScrollViewer.CanContentScroll="False">
+            <dxe:ListBoxEdit.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="FontSize" Value="30"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>-->
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Word}" TextBlock.Foreground="Red" />
+                            <Label Content="---" Margin="50,0,50,0" />
+                            <Label Content="{Binding Translate}"/>
+                        </StackPanel>
+                        <Label Grid.Row="1" Content="{Binding Example}"/>
+                        <Border BorderThickness="1" BorderBrush="Blue" MinWidth="1400"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </dxe:ListBoxEdit.ItemTemplate>
+        </dxe:ListBoxEdit>
+
+    </Grid>
+</Window>
