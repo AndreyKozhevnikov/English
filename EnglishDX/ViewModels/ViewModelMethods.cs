@@ -29,31 +29,9 @@ namespace EnglishDX {
         public static bool IsTestMode = false;
         public ViewModel() {
 
-           // WorkMode = WorkModes.Hard;
-            //test string
-
-            // test 2 string
             rnd = new Random();
             NewWordToEnter = new NewWordTemplate();
             ConnectToDataBase();
-            //generalent убрать TestMode
-            //Random r = new Random(DateTime.Now.Millisecond);
-            //var dts = generalEntity.Data.Where(x => x.Complexity == 2).ToList();
-            //dts.Select(x => x.RandomNumber = r.Next(1, 10000)).ToList();
-            //generalEntity.SaveChanges();
-
-
-            //var dts = generalEntity.Data.Where(x => !string.IsNullOrEmpty(x.Example)).ToList();
-            //foreach (Datum dt in dts) {
-            //    if (dt.Example[0] == '\"') {
-            //        dt.Example = dt.Example.Remove(0, 1);
-            //    }
-            //    int c = dt.Example.Count() - 1;
-            //    if (dt.Example[c] == '\"') {
-            //        dt.Example = dt.Example.Remove(c, 1);
-            //    }
-            //}
-            //generalEntity.SaveChanges();
 
             Logs.Write("programm started");
             CreateNewDuration(); //говнокод
@@ -74,7 +52,8 @@ namespace EnglishDX {
             string machineName = System.Environment.MachineName;
             if (machineName == "KOZHEVNIKOV-W8") {
                 generalEntity = new EngBaseEntities1("EngBaseEntitiesWork");
-            } else {
+            }
+            else {
                 generalEntity = new EngBaseEntities1("EngBaseEntitiesHome");
             }
             if (IsTestMode) {
@@ -93,10 +72,10 @@ namespace EnglishDX {
             GetAllWords();
             GetWordsForWork();
             //  UpdateListLastAnswers();
-     
+
             CreateNewWord();
 
-      
+
 
         }
 
@@ -120,7 +99,8 @@ namespace EnglishDX {
             if (v == null) {
                 CurrentDayItem = new DayStatItem(DateTime.Today);
                 DayStatItems.Insert(0, CurrentDayItem);
-            } else {
+            }
+            else {
                 CurrentDayItem = v;
             }
 
@@ -157,46 +137,6 @@ namespace EnglishDX {
             if (tmpList.Count == 0) {
                 MessageBox.Show("no word in hard mode" + ViewModel.IsTestMode.ToString());
             }
-
-            //switch (WorkMode) {
-            //    case WorkModes.Usual:
-            //        tmpList = ListAllWords.Where(x => x.Complexity > 0 && x.IsAnswered == false).ToList();
-            //        if (tmpList.Count == 0) {
-            //            tmpList = ListAllWords.Where(x => x.Complexity > 0).ToList();
-            //            //foreach (MyWord wrd in tmpList) {
-            //            //    wrd.IsAnswered = false;
-            //            //}
-            //            tmpList.Select(x => x.IsAnswered = false);
-            //        }
-            //        break;
-            //    case WorkModes.Hard:
-            //        //     tmpList = ListAllWords.Where(x => x.Complexity == 2 && x.IsAnswered == false).ToList();
-            //        //if (tmpList.Count == 0) {
-            //        var AllHardWords = ListAllWords.Where(x => x.Complexity == 2 && x.IsAnswered == false).OrderBy(x => x.RandomNumber);
-            //        HardWordsCount = AllHardWords.Count();
-            //        tmpList = AllHardWords.Take(50).ToList();
-            //        //  tmpList.Select(x => x.IsAnswered = false).ToList();
-            //        //     tmpList.Select(x => x.LastRightAnswers = 0).ToList();
-            //        //if (tmpList.Count == 0) {  // заменить на ручное
-            //        //    tmpList = ListAllWords.Where(x => x.Complexity > 0).ToList();
-            //        //    WorkMode = WorkModes.Usual;
-            //        //}
-            //        if (tmpList.Count == 0) {
-            //            MessageBox.Show("no word in hard mode" + ViewModel.IsTestMode.ToString());
-            //            //foreach (MyWord wrd in ListAllWords)
-            //            //    wrd.IsAnswered = false;
-            //            break;
-            //        }
-            //        //foreach (MyWord wrd in tmpList) {
-            //        //    wrd.IsAnswered = false;
-            //        //}
-
-            //        // }
-
-            //        //  ListWordsForWork   =    ListWordsForWork.Concat(tmpList);
-            //        break;
-            //}
-            //       if (tmpList != null)
             ListWordsForWork = new ObservableCollection<MyWord>(tmpList);
 
 
@@ -238,17 +178,17 @@ namespace EnglishDX {
         private void AssignNewWordToOldWord() {
             if (CurrentWord != null) {
                 OldWord = CurrentWord;
-                if (ListWordsForWork.Count == (COUNTWORKFORONECYCLE-1)) { //говнокод
+                if (ListWordsForWork.Count == (COUNTWORKFORONECYCLE - 1)) { //говнокод
                     CreateNewDuration();
                 }
 
-            } else {
-               
+            }
+            else {
+
                 CountApproachesCount();
                 CloseDuration();
                 ShowWrongWords();
                 GetWordsForWork();
-                // UpdateListLastAnswers();
             }
         }
         private void CreateNewWord() {
@@ -257,10 +197,10 @@ namespace EnglishDX {
                 //  cur = 5;
                 CurrentWord = ListWordsForWork[cur];
                 CurrentWord.IsRightAnswer = true;
-                // Debug.Print(cur + "  : " + CurrentWord.Word);
                 ListWordsForWork.RemoveAt(cur);
 
-            } else {
+            }
+            else {
                 CurrentWord = null;
 
             }
@@ -273,8 +213,8 @@ namespace EnglishDX {
         private void CloseDuration() {
             if (CurrentDuration == null)//говнокод
                 return;
-            CurrentDuration.DurationSeconds =(long)(DateTime.Now - CurrentDuration.StartDateTime).TotalSeconds;
-            
+            CurrentDuration.DurationSeconds = (long)(DateTime.Now - CurrentDuration.StartDateTime).TotalSeconds;
+
             CurrentDuration.AnsweredWrong = ListWrongAnsweredWords.Count;
             generalEntity.Durations.Add(CurrentDuration);
         }
@@ -297,9 +237,9 @@ namespace EnglishDX {
 
 
         int WordsBeforeEndCound() {
-            int v4 = ListWordsForWork.Where(w => w.Complexity == 2 &&  w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FirstRightAnswersToComplete - 1).Count();
-            var v = ListWordsForWork.Where(w => w.Complexity == 2 &&  w.LastRightAnswers >= MyWord.RightAnswersToComplete).ToList();
-            int v9 = ListWordsForWork.Where(w => w.Complexity == 2 &&  w.LastRightAnswers >= MyWord.RightAnswersToComplete).Count();
+            int v4 = ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FirstRightAnswersToComplete - 1).Count();
+            var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RightAnswersToComplete).ToList();
+            int v9 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RightAnswersToComplete).Count();
 
 
             return v4 + v9;
@@ -311,24 +251,18 @@ namespace EnglishDX {
 
 
         void HandleKeyDownMethod(KeyEventArgs e) {
-            // Debug.Print(e.Key.ToString());
-           // if (SelectedTabIndex != 0) return;
             switch (e.Key) {
                 case Key.NumPad0:
                 case Key.D0:
-                    // if (CurrentWord.IsExampleVisible) {
                     if (IsCurrentWordExampleVisible || CurrentWord == null) {
                         WorkCycle();
-                        //if (OldWord != null)
-                        //    OldWord.IsRightAnswer = false;
 
-                    } else {
+                    }
+                    else {
                         IsCurrentWordExampleVisible = true;
                         CurrentWord.IsRightAnswer = false;
                     }
 
-                    //if (CurrentWord.IsExampleVisible)
-                    //    CurrentWord.IsRightAnswer = false;
 
                     break;
                 case Key.NumPad1:
@@ -346,10 +280,6 @@ namespace EnglishDX {
                     if (SelectedTabIndex == 0) {
                         if (OldWord == null)
                             return;
-                        //   OldWord.OpenInGoogleTranslate();
-
-
-
                         //---
                         GrdAllWordsSearchString = "";
                         CurrentWordForAllWordsGrid = OldWord;
@@ -373,10 +303,6 @@ namespace EnglishDX {
                     if (OldWord == null)
                         return;
                     OldWord.OpenInGoogleTranslate();
-                   // SelectedTabIndex = 0;
-                    //GrdAllWordsSearchString = "";
-                    //CurrentWordForAllWordsGrid = OldWord;
-                    //SelectedTabIndex = 1;
                     break;
                 case Key.NumPad8:
                 case Key.D8:
@@ -399,16 +325,6 @@ namespace EnglishDX {
         }
 
 
-
-
-
-
-
-
-
-
-
-
         private void CountApproachesCount() {
             if (CurrentWordsCount > 20) {
                 CurrentDayItem.CompleteApproaches++;
@@ -428,7 +344,8 @@ namespace EnglishDX {
         public static void GlobalSaveChanges() {
             try {
                 ViewModel.generalEntity.SaveChanges();
-            } catch(Exception e) {
+            }
+            catch (Exception e) {
                 string st = e.Message;
                 MessageBox.Show("Not saved!  " + e.Message);
             }
@@ -453,7 +370,6 @@ namespace EnglishDX {
             CurrentWordsCount = 0;
         }
         void DeleteWord() {
-            //   DXMessageBox msg = new DXMessageBox();
             if (DXMessageBox.Show(string.Format("Do you really want to delete-' {0} ' word?", CurrentWordForAllWordsGrid.Word), "delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes) {
                 CurrentWordForAllWordsGrid.Del();
                 ListWordsForWork.Remove(CurrentWordForAllWordsGrid);

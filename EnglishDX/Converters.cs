@@ -29,33 +29,6 @@ namespace EnglishDX {
         }
     }
 
-    //public class RightAnswerAndEasyToColorMultiConverter : MarkupExtension, IMultiValueConverter {
-    //    public RightAnswerAndEasyToColorMultiConverter() { }
-
-    //    public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-    //        //  throw new NotImplementedException();
-    //        Color cl;
-    //        if (!(values[0] is bool)) return null;
-    //        if ((bool)values[1]) {
-    //            cl = (Color)ColorConverter.ConvertFromString("#FF04F170");
-    //            return new SolidColorBrush(cl);
-    //        }
-            
-    //        if (!(bool)values[0]) {
-    //            cl = (Color)ColorConverter.ConvertFromString("#FFEB91F0");
-    //            return new SolidColorBrush(cl);
-    //        }
-    //        return null;
-    //    }
-
-    //    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture) {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override object ProvideValue(IServiceProvider serviceProvider) {
-    //        return this;
-    //    }
-    //}
 
     public class BoolToFontSizeConverter : MarkupExtension, IValueConverter {
         public BoolToFontSizeConverter() { }
@@ -77,30 +50,12 @@ namespace EnglishDX {
         }
     }
 
-    //public class MyBoolToVisibilitySizeConverter : MarkupExtension, IValueConverter {
-    //    public MyBoolToVisibilitySizeConverter() { }
-    //    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-    //        //Color cl;
-    //        if ((bool)value) {
-    //            //  cl = (Color)ColorConverter.ConvertFromString("#FFF7C9C9");
-    //            return Visibility.Visible;
-    //        }
-    //        return Visibility.Hidden;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-    //        return value;
-    //    }
-
-    //    public override object ProvideValue(IServiceProvider serviceProvider) {
-    //        return this;
-    //    }
-    //}
 
     public class IntToColorConverter : MarkupExtension, IValueConverter {
         public IntToColorConverter() { }
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-            if (value == null) return null;
+            if (value == null)
+                return null;
             int v = (int)value;
             if (v < 4)
                 return new SolidColorBrush(Colors.Red);

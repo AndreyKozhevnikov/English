@@ -174,26 +174,19 @@ namespace EnglishDX {
             if (IsRightAnswer) {
                 AllRightAnswers++;
                 if (LastRightAnswers > RightAnswersToComplete) {
-                    //Complexity = 1;
-                    //IsAnswered = false;
                     IsAnswered = true;
                 }
                 if (LastRightAnswers >= FirstRightAnswersToComplete && LastRightAnswers == AllAnswers) {
                     Complexity = 1;
-                    //   MessageBox.Show(this.Word);
                     IsAnswered = true;
                 }
             }
             else {
                 AllWrongAnswers++;
                 Complexity = 2;
-                //  IsAnswered = false;
             }
 
             Logs.Write(this, IsRightAnswer);
-            //  InExam = false;
-
-            //Save(); //
 
         }
 

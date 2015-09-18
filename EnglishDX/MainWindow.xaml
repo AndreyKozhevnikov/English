@@ -19,16 +19,10 @@
         <SolidColorBrush x:Key="IsRightAnswerColor" Color="#FFF0A7E2"/>
         <dx:BoolToVisibilityConverter x:Key="BoolToVisibleConverter"/>
     </dx:DXWindow.Resources>
-    <!--<dx:DXWindow.DataContext>
-        <local:ViewModel/>
-    </dx:DXWindow.DataContext>-->
     <dxmvvm:Interaction.Triggers>
         <dxmvvm:EventToCommand Command="{Binding HandleKeyDownCommand}" EventName="PreviewKeyDown" PassEventArgsToCommand="True"/>
     </dxmvvm:Interaction.Triggers>
     <dxlc:LayoutControl x:Name="layoutControl" Focusable="True" >
-        <!--<dxmvvm:Interaction.Triggers>
-            <dxmvvm:EventToCommand Command="{Binding HandleKeyDownCommand}" EventName="PreviewKeyDown" PassEventArgsToCommand="True"/>
-        </dxmvvm:Interaction.Triggers>-->
         <dxlc:LayoutGroup Orientation="Vertical">
             <dxlc:LayoutGroup View="Tabs" SelectedTabIndex="{Binding SelectedTabIndex,Mode=TwoWay}" >
                 <dxlc:LayoutGroup Header="Work">
@@ -97,71 +91,51 @@
                                     <UniformGrid Rows="0" Columns="1" Grid.Row="1">
                                         <Viewbox>
                                             <Label Content="{Binding OldWord.Word}" 
-      
                    FontWeight="Bold" />
                                         </Viewbox>
                                         <Viewbox >
                                             <Label Content="{Binding OldWord.Translate}" HorizontalAlignment="Center" FontWeight="Bold"    />
                                         </Viewbox>
-                               
-
-                                    <TextBlock Text="{Binding OldWord.Example}" Grid.Row="2" FontSize="30"  TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding OldWord.Example}" Grid.Row="2" FontSize="30"  TextWrapping="Wrap"/>
                                     </UniformGrid>
                                 </Grid>
                             </Border>
                         </Grid>
                         <Border BorderBrush="Blue" BorderThickness="2" Grid.Row="2" Margin="5" Visibility="Visible">
-                                <dxlc:LayoutGroup Orientation="Horizontal" >
-                                    <dxlc:LayoutItem Label="ExamCount">
-                                        <TextBlock Text="{Binding ListWordsForWork.Count}"/>
-                                    </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="CompleteToday">
-                                        <TextBlock Text="{Binding CurrentDayItem.CompleteToday}"/>
-                                    </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="TimesOfApproaches">
-                                        <TextBlock Text="{Binding CurrentDayItem.CompleteApproaches}"/>
-                                    </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="LastAnswerTime">
-                                        <TextBlock Text="{Binding CurrentDayItem.LastAnswerTime,StringFormat={}{0:HH:mm}}"/>
-                                    </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="AnswerToday">
-                                        <dxe:ProgressBarEdit EditValue="{Binding  CurrentDayItem.AnswerAll}" Maximum="360" ContentDisplayMode="Value"  />
-                                    </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="RightAnswers">
-                                        <dxe:ProgressBarEdit EditValue="{Binding CurrentDayItem.AnswerRight}"
+                            <dxlc:LayoutGroup Orientation="Horizontal" >
+                                <dxlc:LayoutItem Label="ExamCount">
+                                    <TextBlock Text="{Binding ListWordsForWork.Count}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="CompleteToday">
+                                    <TextBlock Text="{Binding CurrentDayItem.CompleteToday}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="TimesOfApproaches">
+                                    <TextBlock Text="{Binding CurrentDayItem.CompleteApproaches}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="LastAnswerTime">
+                                    <TextBlock Text="{Binding CurrentDayItem.LastAnswerTime,StringFormat={}{0:HH:mm}}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="AnswerToday">
+                                    <dxe:ProgressBarEdit EditValue="{Binding  CurrentDayItem.AnswerAll}" Maximum="360" ContentDisplayMode="Value"  />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="RightAnswers">
+                                    <dxe:ProgressBarEdit EditValue="{Binding CurrentDayItem.AnswerRight}"
                                                              Maximum="{Binding CurrentDayItem.AnswerAll}" Minimum="0"
                                                              ContentDisplayMode="Value" IsPercent="True" DisplayFormatString=" {0:p}" >
-                                        </dxe:ProgressBarEdit>
-                                    </dxlc:LayoutItem>
-                                    <StackPanel Orientation="Horizontal">
-                                        <dxe:ProgressBarEdit Minimum="0" Maximum="100" ContentDisplayMode="Value" IsPercent="False" 
+                                    </dxe:ProgressBarEdit>
+                                </dxlc:LayoutItem>
+                                <StackPanel Orientation="Horizontal">
+                                    <dxe:ProgressBarEdit Minimum="0" Maximum="100" ContentDisplayMode="Value" IsPercent="False" 
                                                                  Width="80"
                                                                  EditValue="{Binding CurrentWordsCount}"   />
-                                        <Button Content="Reset" Command="{Binding ResetCurrentWordsCommand}" Grid.Column="1" Width="40"/>
+                                    <Button Content="Reset" Command="{Binding ResetCurrentWordsCommand}" Grid.Column="1" Width="40"/>
                                 </StackPanel>
-                                   <!-- <dxlc:LayoutItem Label="Mode" Width="80">
-                                        <TextBlock Text="{Binding WorkMode}"/>
-                                    </dxlc:LayoutItem>-->
-                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
                         </Border>
                     </Grid>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="Words">
                     <dxlc:LayoutGroup Orientation="Vertical">
-                        <!--<StackPanel Height="24" Orientation="Horizontal">
-                            <dxe:ListBoxEdit ItemsSource="{dxe:EnumItemsSource EnumType=local:WorkModes}" EditValue="{Binding WorkMode,Mode=TwoWay}">
-                                <dxe:ListBoxEdit.StyleSettings>
-                                    <dxe:RadioListBoxEditStyleSettings/>
-                                </dxe:ListBoxEdit.StyleSettings>
-                                <dxe:ListBoxEdit.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </dxe:ListBoxEdit.ItemsPanel>
-                            </dxe:ListBoxEdit>
-                            <Button Content="updatedata" Height="24" Command="{Binding UpdateDataCommand}" Margin="20,0,0,0"/>
-                            
-                        </StackPanel>-->
                         <dxlc:LayoutGroup >
                             <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="gr2" ItemsSource="{Binding ListAllWords}" 
                                               CurrentItem="{Binding CurrentWordForAllWordsGrid,Mode=TwoWay}"
@@ -178,10 +152,7 @@
                                     <dxg:GridColumn FieldName="LastRightAnswers"  Width="37" Header="Last" FixedWidth="True" />
                                     <dxg:GridColumn FieldName="Complexity" Width="37"/>
                                     <dxg:GridColumn FieldName="IsAnswered" Width="37" Header="Answered" FixedWidth="True"/>
-                                    <!--<dxg:GridColumn FieldName="AllAnswers" ReadOnly="True" Width="37" Header="All" FixedWidth="True" VisibleIndex="7"/>
-                                    <dxg:GridColumn FieldName="AllRightAnswers" ReadOnly="True" Width="37" Header="Right" FixedWidth="True" VisibleIndex="8"/>-->
                                     <dxg:GridColumn FieldName="IsChanged" Width="30" Header="ch" ReadOnly="True"/>
-                                    <!--<dxg:GridColumn FieldName="LastRightAnswers"/>-->
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.TotalSummary>
                                     <dxg:GridSummaryItem FieldName="Word" ShowInColumn="Word" SummaryType="Count"/>
@@ -192,14 +163,6 @@
                                                    ShowGroupPanel="False" SearchString="{Binding GrdAllWordsSearchString,Mode=TwoWay}" SearchDelay="100"/>
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
-                            <!--<DataGrid ItemsSource="{Binding ListAllWords}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Word}"/>
-                                        <DataGridTextColumn Binding="{Binding Translate}"/>
-                                        <DataGridTextColumn Binding="{Binding Example}"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>-->
-
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutGroup>
@@ -235,7 +198,6 @@
 
 
                         </dxlc:LayoutGroup>
-                        <!--<Button Content="test" Click="Button_Click_1"/>-->
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="EnterNewWords">

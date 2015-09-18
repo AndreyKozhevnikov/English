@@ -15,10 +15,6 @@
                                 <Setter Property="FontSize" Value="30"/>
                             </Style>
                         </StackPanel.Resources>
-                        <!--<Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>-->
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding Word}" TextBlock.Foreground="Red" />
                             <Label Content="---" Margin="50,0,50,0" />

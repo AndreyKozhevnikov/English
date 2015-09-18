@@ -25,9 +25,7 @@ namespace EnglishDX {
 
         int _currentWordCount;
         int _selecteTabIndex;
-
         int _hardWordsCount;
-
         int _wordsBeforeEnd;
 
       
@@ -50,10 +48,8 @@ namespace EnglishDX {
         ICommand _enterNewWordCommand;
         ICommand _openCurrentItemOnWeb;
         ICommand _saveChangesInWordsCommand;
-
         ICommand _resetCurrentWordsCountCommand;
         ICommand _deleteWordCommand;
-
         ICommand _pastingNewWordsCommand;
         ICommand _enterPastedWordsToBaseCommand;
 
@@ -142,13 +138,6 @@ namespace EnglishDX {
         }
 
 
-
-        //public WorkModes WorkMode {
-        //    get { return _currentMode; }
-        //    set { _currentMode = value;
-        //    RaisePropertiesChanged("CurrentMode");
-        //    }
-        //}
 
         public int WordsBeforeEnd {
             get { return _wordsBeforeEnd; }
