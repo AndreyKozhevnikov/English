@@ -15,7 +15,7 @@ namespace EnglishDX
 
         private void Application_Startup(object sender, StartupEventArgs e) {
             if (e.Args.Count() > 0 && e.Args[0] == "-testBase") {
-              //  ViewModel.IsTestMode = true;
+                ViewModel.IsTestMode = true;
             }
         }
     }

@@ -343,17 +343,22 @@ namespace EnglishDX {
                     break;
                 case Key.NumPad4:
                 case Key.D4:
-                    if (OldWord == null)
-                        return;
-                 //   OldWord.OpenInGoogleTranslate();
+                    if (SelectedTabIndex == 0) {
+                        if (OldWord == null)
+                            return;
+                        //   OldWord.OpenInGoogleTranslate();
 
 
 
-                    //---
-                    GrdAllWordsSearchString = "";
-                    CurrentWordForAllWordsGrid = OldWord;
-                    SelectedTabIndex = 1;
-                    //---
+                        //---
+                        GrdAllWordsSearchString = "";
+                        CurrentWordForAllWordsGrid = OldWord;
+                        SelectedTabIndex = 1;
+                        //---
+                    }
+                    else {
+                        SelectedTabIndex = 0;
+                    }
 
                     break;
 
