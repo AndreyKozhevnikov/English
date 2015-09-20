@@ -41,7 +41,7 @@ namespace EnglishDX {
             StartWork();
 
 
-            SelectedTabIndex = 0;
+            SelectedTabIndex = 1;
         }
 
         void SetRandomNumber(Datum dt, Random r) {
