@@ -192,7 +192,15 @@ namespace EnglishDX {
 
         public void Del() //метод удаления
         {
+            int id = this.ID;
+            List<Log> logList = ViewModel.generalEntity.Logs.Where(x => x.WordId == id).ToList();
+            if (logList.Count > 0) {
+                foreach (Log lg in logList) {
+                    ViewModel.generalEntity.Logs.Remove(lg);
+                }
+            }
             ViewModel.generalEntity.Data.Remove(parentWordEntity);
+            ViewModel.generalEntity.SaveChanges();
         }
 
 
