@@ -160,7 +160,9 @@
                                 <dxg:GridControl.View>
                                     <dxg:TableView ShowSearchPanelMode="Always" AutoWidth="True"
                                                    ShowTotalSummary="True"
-                                                   ShowGroupPanel="False" SearchString="{Binding GrdAllWordsSearchString,Mode=TwoWay}" SearchDelay="100"/>
+                                                   ShowGroupPanel="False" SearchString="{Binding GrdAllWordsSearchString,Mode=TwoWay}" SearchDelay="100" SearchPanelFindFilter="StartsWith"
+                                                   
+                                                   />
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
                         </dxlc:LayoutGroup>
