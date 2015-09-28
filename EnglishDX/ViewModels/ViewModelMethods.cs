@@ -289,7 +289,7 @@ namespace EnglishDX {
                     else {
                         SelectedTabIndex = 0;
                     }
-
+                    e.Handled = true;
                     break;
 
                 case Key.NumPad5:

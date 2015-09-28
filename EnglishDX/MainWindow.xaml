@@ -24,7 +24,7 @@
     </dxmvvm:Interaction.Triggers>
     <dxlc:LayoutControl x:Name="layoutControl" Focusable="True" >
         <dxlc:LayoutGroup Orientation="Vertical">
-            <dxlc:LayoutGroup View="Tabs" SelectedTabIndex="{Binding SelectedTabIndex,Mode=TwoWay}" >
+            <dxlc:LayoutGroup View="Tabs" SelectedTabIndex="{Binding SelectedTabIndex,Mode=TwoWay}" SelectedTabChildChanged="LayoutGroup_SelectedTabChildChanged" >
                 <dxlc:LayoutGroup Header="Work">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -134,10 +134,10 @@
                         </Border>
                     </Grid>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Header="Words">
+                <dxlc:LayoutGroup Header="Words" >
                     <dxlc:LayoutGroup Orientation="Vertical">
                         <dxlc:LayoutGroup >
-                            <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="gr2" ItemsSource="{Binding ListAllWords}" 
+                            <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="grdWords" ItemsSource="{Binding ListAllWords}" 
                                               CurrentItem="{Binding CurrentWordForAllWordsGrid,Mode=TwoWay}"
                                            
                                          AllowLiveDataShaping="True"

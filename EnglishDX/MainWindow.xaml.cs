@@ -15,6 +15,8 @@ using DevExpress.Xpf.NavBar;
 using System.Diagnostics;
 using DevExpress.Xpf.Grid;
 using System.Windows.Threading;
+using DevExpress.Xpf.LayoutControl;
+
 
 
 namespace EnglishDX
@@ -40,13 +42,7 @@ namespace EnglishDX
         }
         ViewModel v;
 
-        private void LayoutGroup_PreviewKeyDown_1(object sender, KeyEventArgs e) {
-            Debug.Print("temptemp");
-        }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e) {
-       //     gr2.ItemsSource = v.ListAllWords;
-        }
 
         private void gr2_CurrentItemChanged_1(object sender, CurrentItemChangedEventArgs e) {
             GridControl gc = sender as GridControl;
@@ -59,13 +55,15 @@ namespace EnglishDX
                 tv.ScrollIntoView(rH);
             }), DispatcherPriority.Input);
 
-            //MyWord wrd = gc.GetRow(rH) as MyWord;
-            //Debug.Print(wrd + " " + rH);
-
         }
 
-        private void DXWindow_PreviewKeyDown_1(object sender, KeyEventArgs e) {
+   
 
+        private void LayoutGroup_SelectedTabChildChanged(object sender, ValueChangedEventArgs<FrameworkElement> e) {
+            LayoutGroup lg = e.NewValue as LayoutGroup;
+            if (lg != null && lg.Header.ToString() == "Words") {
+                grdWords.View.SearchControl.Focus();
+            }
         }
 
    
