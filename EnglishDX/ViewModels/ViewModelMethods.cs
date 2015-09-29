@@ -268,6 +268,7 @@ namespace EnglishDX {
                 case Key.NumPad1:
                 case Key.D1:
                     WorkCycle();
+                    
                     break;
                 case Key.NumPad3:
                 case Key.D3:
@@ -289,7 +290,6 @@ namespace EnglishDX {
                     else {
                         SelectedTabIndex = 0;
                     }
-                    e.Handled = true;
                     break;
 
                 case Key.NumPad5:

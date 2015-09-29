@@ -19,22 +19,14 @@ using DevExpress.Xpf.LayoutControl;
 
 
 
-namespace EnglishDX
-{
-    public partial class MainWindow : DXWindow
-    {
-        public MainWindow()
-        {
+namespace EnglishDX {
+    public partial class MainWindow : DXWindow {
+        public MainWindow() {
             InitializeComponent();
-          
-
-
 
             v = new ViewModel();
-          
-
             this.DataContext = v;
-             this.Loaded += MainWindow_Loaded;
+            this.Loaded += MainWindow_Loaded;
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e) {
@@ -47,8 +39,8 @@ namespace EnglishDX
         private void gr2_CurrentItemChanged_1(object sender, CurrentItemChangedEventArgs e) {
             GridControl gc = sender as GridControl;
             TableView tv = gc.View as TableView;
-            int rH = tv.FocusedRowHandle+6;
-            rH = Math.Min(gc.VisibleRowCount-1, rH);
+            int rH = tv.FocusedRowHandle + 6;
+            rH = Math.Min(gc.VisibleRowCount - 1, rH);
             tv.ScrollIntoView(0);
 
             Dispatcher.BeginInvoke((Action)(() => {
@@ -57,16 +49,19 @@ namespace EnglishDX
 
         }
 
-   
+
 
         private void LayoutGroup_SelectedTabChildChanged(object sender, ValueChangedEventArgs<FrameworkElement> e) {
             LayoutGroup lg = e.NewValue as LayoutGroup;
             if (lg != null && lg.Header.ToString() == "Words") {
-                grdWords.View.SearchControl.Focus();
+                     Dispatcher.BeginInvoke((Action)(() => {
+                         grdWords.View.SearchControl.Focus();
+            }), DispatcherPriority.Input);
+           
             }
         }
 
-   
+
     }
 
 
