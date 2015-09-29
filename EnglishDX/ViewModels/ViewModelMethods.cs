@@ -251,77 +251,67 @@ namespace EnglishDX {
 
 
         void HandleKeyDownMethod(KeyEventArgs e) {
-            switch (e.Key) {
-                case Key.NumPad0:
-                case Key.D0:
-                    if (IsCurrentWordExampleVisible || CurrentWord == null) {
-                        WorkCycle();
+            switch (SelectedTabIndex) {
+                case 0:
+                    switch (e.Key) {
+                        case Key.NumPad0:
+                        case Key.D0:
+                            if (IsCurrentWordExampleVisible || CurrentWord == null) {
+                                WorkCycle();
+                            }
+                            else {
+                                IsCurrentWordExampleVisible = true;
+                                CurrentWord.IsRightAnswer = false;
+                            }
+                            break;
+                        case Key.NumPad1:
+                        case Key.D1:
+                            WorkCycle();
+                            break;
+                        case Key.NumPad3:
+                        case Key.D3:
+                            if (OldWord == null)
+                                return;
+                            OldWord.IsRightAnswer = !OldWord.IsRightAnswer;
+                            break;
+                        case Key.NumPad4:
+                        case Key.D4:
+                            if (OldWord == null)
+                                return;
+                            CurrentWordForAllWordsGrid = OldWord;
+                            SelectedTabIndex = 1;
+                            break;
 
+                        case Key.NumPad5:
+                        case Key.D5:
+                            if (OldWord != null)
+                                OldWord.IsEasy = !OldWord.IsEasy;
+                            break;
+                        case Key.NumPad7:
+                        case Key.D7:
+                            if (OldWord == null)
+                                return;
+                            OldWord.OpenInGoogleTranslate();
+                            break;
+                        case Key.NumPad8:
+                        case Key.D8:
+                            CurrentWord.IsEasy = !CurrentWord.IsEasy;
+                            WorkCycle();
+                            break;
+                        case Key.Add:
+                        case Key.OemPlus:
+                            IsCurrentWordExampleVisible = !IsCurrentWordExampleVisible;
+                            if (IsCurrentWordExampleVisible)
+                                CurrentWord.IsRightAnswer = false;
+                            break;
                     }
-                    else {
-                        IsCurrentWordExampleVisible = true;
-                        CurrentWord.IsRightAnswer = false;
-                    }
-
-
                     break;
-                case Key.NumPad1:
-                case Key.D1:
-                    WorkCycle();
-                    
-                    break;
-                case Key.NumPad3:
-                case Key.D3:
-                    if (OldWord == null)
-                        return;
-                    OldWord.IsRightAnswer = !OldWord.IsRightAnswer;
-                    break;
-                case Key.NumPad4:
-                case Key.D4:
-                    if (SelectedTabIndex == 0) {
-                        if (OldWord == null)
-                            return;
-                        //---
-                        GrdAllWordsSearchString = "";
-                        CurrentWordForAllWordsGrid = OldWord;
-                        SelectedTabIndex = 1;
-                        //---
-                    }
-                    else {
+                case 1:
+                    if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
                     }
                     break;
-
-                case Key.NumPad5:
-                case Key.D5:
-                    if (OldWord != null)
-                        OldWord.IsEasy = !OldWord.IsEasy;
-
-                    break;
-                case Key.NumPad7:
-                case Key.D7:
-                    if (OldWord == null)
-                        return;
-                    OldWord.OpenInGoogleTranslate();
-                    break;
-                case Key.NumPad8:
-                case Key.D8:
-                    CurrentWord.IsEasy = !CurrentWord.IsEasy;
-                    WorkCycle();
-                    break;
-                case Key.NumPad9:
-                case Key.D9:
-                    SelectedTabIndex = 0;
-                    break;
-                case Key.Add:
-                case Key.OemPlus:
-                    IsCurrentWordExampleVisible = !IsCurrentWordExampleVisible;
-                    if (IsCurrentWordExampleVisible)
-                        CurrentWord.IsRightAnswer = false;
-                    break;
-
             }
-
         }
 
 

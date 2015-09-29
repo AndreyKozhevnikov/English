@@ -20,18 +20,11 @@ namespace EnglishDX {
 
         public static EngBaseEntities1 generalEntity;
 
-        WorkModes _currentMode;
-
-
         int _currentWordCount;
         int _selecteTabIndex;
         int _hardWordsCount;
         int _wordsBeforeEnd;
 
-      
-
-        // string _grdAllWordsFilter = "";
-        string _grdAllWordsSearchString = "";
 
         Duration _currentDuration;
 
@@ -114,13 +107,6 @@ namespace EnglishDX {
             set {
                 _selecteTabIndex = value;
                 RaisePropertyChanged("SelectedTabIndex");
-            }
-        }
-        public string GrdAllWordsSearchString {
-            get { return _grdAllWordsSearchString; }
-            set {
-                _grdAllWordsSearchString = value;
-                RaisePropertyChanged("GrdAllWordsSearchString");
             }
         }
         public bool IsCurrentWordExampleVisible {

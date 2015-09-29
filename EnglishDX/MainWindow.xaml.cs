@@ -54,6 +54,7 @@ namespace EnglishDX {
         private void LayoutGroup_SelectedTabChildChanged(object sender, ValueChangedEventArgs<FrameworkElement> e) {
             LayoutGroup lg = e.NewValue as LayoutGroup;
             if (lg != null && lg.Header.ToString() == "Words") {
+                grdWords.View.SearchString = null;
                      Dispatcher.BeginInvoke((Action)(() => {
                          grdWords.View.SearchControl.Focus();
             }), DispatcherPriority.Input);
