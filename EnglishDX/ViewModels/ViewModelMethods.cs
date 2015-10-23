@@ -33,6 +33,11 @@ namespace EnglishDX {
             NewWordToEnter = new NewWordTemplate();
             ConnectToDataBase();
 
+            //Random r = new Random(DateTime.Now.Millisecond);
+            //var dts = generalEntity.Data.Where(x => x.Complexity == 2).ToList();
+            //dts.Select(x => x.RandomNumber = r.Next(1, 10000)).ToList();
+            //generalEntity.SaveChanges();
+
             Logs.Write("programm started");
             CreateNewDuration(); //говнокод
 
