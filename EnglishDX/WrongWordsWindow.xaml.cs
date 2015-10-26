@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -27,6 +28,11 @@ namespace EnglishDX {
             ViewModel vm = this.DataContext as ViewModel;
             string st = string.Format("WrongWordsWindow - {0}, AllSecond - {1}",vm.ListWrongAnsweredWords.Count,vm.CurrentDuration.DurationSeconds);
             this.Title = st;
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.D1||e.Key==Key.NumPad1)
+                this.Close();
         }
     }
 }

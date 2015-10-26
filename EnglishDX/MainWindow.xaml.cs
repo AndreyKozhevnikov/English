@@ -55,10 +55,10 @@ namespace EnglishDX {
             LayoutGroup lg = e.NewValue as LayoutGroup;
             if (lg != null && lg.Header.ToString() == "Words") {
                 grdWords.View.SearchString = null;
-                     Dispatcher.BeginInvoke((Action)(() => {
-                         grdWords.View.SearchControl.Focus();
-            }), DispatcherPriority.Input);
-           
+                Dispatcher.BeginInvoke((Action)(() => {
+                    grdWords.View.SearchControl.Focus();
+                }), DispatcherPriority.Input);
+
             }
         }
 
