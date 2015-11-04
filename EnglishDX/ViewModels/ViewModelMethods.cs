@@ -315,6 +315,9 @@ namespace EnglishDX {
                     if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
                     }
+                    if (e.Key == Key.NumPad7 || e.Key == Key.D7) {
+                        CurrentWordForAllWordsGrid.OpenInGoogleTranslate();
+                    }
                     break;
             }
         }
