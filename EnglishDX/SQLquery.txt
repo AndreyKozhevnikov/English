@@ -1,0 +1,8 @@
+﻿use engbase
+--select * from data where Complexity=2
+update data set 
+tag='complafter5000&1800&1300',
+IsAnswered=0,
+LastRightAnswers=0,
+AllAnswers=0
+where Complexity=2

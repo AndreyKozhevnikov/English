@@ -242,9 +242,9 @@ namespace EnglishDX {
 
 
         int WordsBeforeEndCound() {
-            int v4 = ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FirstRightAnswersToComplete - 1).Count();
-            var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RightAnswersToComplete).ToList();
-            int v9 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RightAnswersToComplete).Count();
+            int v4 = ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FIRSTRIGHTANSWERSTOCOMPLETE - 1).Count();
+            var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE).ToList();
+            int v9 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE).Count();
 
 
             return v4 + v9;

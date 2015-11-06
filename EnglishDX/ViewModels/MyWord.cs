@@ -16,8 +16,8 @@ namespace EnglishDX {
     [DebuggerDisplay("Word-{Word} Comp-{Complexity}, AlA-{AllAnswers}, LstRA-{LastRightAnswers}")]
     public class MyWord : BindableBase, IComparable //класс слово
     {
-        public static int RightAnswersToComplete = 5;
-        public static int FirstRightAnswersToComplete = 2;
+        public static int RIGHTANSWERSTOCOMPLETE = 5;
+        public static int FIRSTRIGHTANSWERSTOCOMPLETE = 2;
 
         bool _isRightAnswer;
         bool _isChanged;
@@ -173,10 +173,10 @@ namespace EnglishDX {
         public void GoToStat() {
             if (IsRightAnswer) {
                 AllRightAnswers++;
-                if (LastRightAnswers > RightAnswersToComplete) {
+                if (LastRightAnswers > RIGHTANSWERSTOCOMPLETE) {
                     IsAnswered = true;
                 }
-                if (LastRightAnswers >= FirstRightAnswersToComplete && LastRightAnswers == AllAnswers) {
+                if (LastRightAnswers >= FIRSTRIGHTANSWERSTOCOMPLETE && LastRightAnswers == AllAnswers) {
                     Complexity = 1;
                     IsAnswered = true;
                 }
