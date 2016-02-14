@@ -139,7 +139,6 @@
                         <dxlc:LayoutGroup >
                             <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="grdWords" ItemsSource="{Binding ListAllWords}" 
                                               CurrentItem="{Binding CurrentWordForAllWordsGrid,Mode=TwoWay}"
-                                           
                                          AllowLiveDataShaping="True"
                                               CurrentItemChanged="gr2_CurrentItemChanged_1" 
                                               >
@@ -224,8 +223,23 @@
                         <Button Content="Enter new words"  Grid.Row="1" Height="50"  Command="{Binding EnterPastedWordsToBaseCommand}"/>
                     </Grid>
                 </dxlc:LayoutGroup>
+
                 <dxlc:LayoutGroup Header="Statistic">
-                    <dxg:GridControl ItemsSource="{Binding DayStatItems}" AutoGenerateColumns="AddNew"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <dxg:GridControl ItemsSource="{Binding DayStatItems}" AutoGenerateColumns="AddNew"/>
+                        <StackPanel Grid.Row="1">
+                            <dxe:ListBoxEdit ItemsSource="{Binding WordsBeforeEndList}" />
+                            <Button Content="UpdateIndexes" Command="{Binding UpdateIndexesCommand}"/>
+                            <Button Content="CreateNewCircle" Command="{Binding CreateNewCircleCommand}"/>
+                        </StackPanel>
+                    </Grid>
+
+
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutGroup>

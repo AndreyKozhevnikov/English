@@ -33,10 +33,7 @@ namespace EnglishDX {
             NewWordToEnter = new NewWordTemplate();
             ConnectToDataBase();
 
-            //Random r = new Random(DateTime.Now.Millisecond);
-            //var dts = generalEntity.Data.Where(x => x.Complexity == 2).ToList();
-            //dts.Select(x => x.RandomNumber = r.Next(1, 10000)).ToList();
-            //generalEntity.SaveChanges();
+           
 
             Logs.Write("programm started");
             CreateNewDuration(); //говнокод
@@ -163,7 +160,8 @@ namespace EnglishDX {
                                // select new {c2 = cat.ToString(), c = cc!=null?cc.res.ToString():"0",  }
                                select string.Format("LastAnswers{0}: -- {1}", dt.ToString(), result != null ? result.resultValue.ToString() : "0")
                          ).ToList();
-            WordsBeforeEnd = WordsBeforeEndCound();
+            WordsBeforeEndList = WordsBeforeEndListCound();
+            WordsBeforeEnd = WordsBeforeEndList.Count;
             SelectedTabIndex = 1;
 
             RaisePropertiesChanged("ListLastAnswers");
@@ -241,13 +239,13 @@ namespace EnglishDX {
 
 
 
-        int WordsBeforeEndCound() {
-            int v4 = ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FIRSTRIGHTANSWERSTOCOMPLETE - 1).Count();
-            var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE).ToList();
-            int v9 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE).Count();
+        ObservableCollection<MyWord> WordsBeforeEndListCound() {
+            var v0= ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FIRSTRIGHTANSWERSTOCOMPLETE - 1);
+           // var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE);
+            var v1 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE);
+            var v2 = v1.Concat(v0);
 
-
-            return v4 + v9;
+            return new ObservableCollection<MyWord>( v2);
         }
 
 
@@ -418,8 +416,15 @@ namespace EnglishDX {
             return results;
         }
 
-
-
+        private void UpdateIndexes() {
+            Random r = new Random(DateTime.Now.Millisecond);
+            var dts = generalEntity.Data.Where(x => x.Complexity == 2).ToList();
+            dts.Select(x => x.RandomNumber = r.Next(1, 10000)).ToList();
+            generalEntity.SaveChanges();
+        }
+        private void CreateNewCircle() {
+            throw new NotImplementedException();
+        }
 
     }
 

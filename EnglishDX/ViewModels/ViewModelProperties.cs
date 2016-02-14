@@ -45,7 +45,11 @@ namespace EnglishDX {
         ICommand _deleteWordCommand;
         ICommand _pastingNewWordsCommand;
         ICommand _enterPastedWordsToBaseCommand;
+        ICommand _updateIndexesCommand;
+        ICommand _createNewCircleCommand;
 
+    
+  
       
         
 
@@ -58,6 +62,7 @@ namespace EnglishDX {
         public ObservableCollection<MyWord> ListWrongAnsweredWords { get; set; }
         public ObservableCollection<NewWordTemplate> ListWordsFromClipboard { get; set; }
         public ObservableCollection<DayStatItem> DayStatItems { get; set; }
+        public ObservableCollection<MyWord> WordsBeforeEndList { get; set; }
 
         public MyWord CurrentWord {
             get { return _currentWord; }
@@ -222,7 +227,24 @@ namespace EnglishDX {
                 return _enterPastedWordsToBaseCommand; }
         
         }
+        public ICommand UpdateIndexesCommand {
+            get {
+                if (_updateIndexesCommand == null)
+                    _updateIndexesCommand = new DelegateCommand(UpdateIndexes);
+                return _updateIndexesCommand; }
+            set {
+                _updateIndexesCommand = value; }
+        }
 
+        public ICommand CreateNewCircleCommand {
+            get {
+                if (_createNewCircleCommand == null)
+                    _createNewCircleCommand = new DelegateCommand(CreateNewCircle);
+                return _createNewCircleCommand; }
+            set { _createNewCircleCommand = value; }
+        }
+
+       
 
 
 

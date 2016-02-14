@@ -88,25 +88,5 @@ namespace EnglishDX {
         }
     }
 
-    public class VisibilityToStretchConverter : MarkupExtension, IValueConverter {
-
-        public override object ProvideValue(IServiceProvider serviceProvider) {
-            return this;
-        }
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-            Viewbox vb = value as Viewbox;
-            return value;
-            Visibility v = (Visibility)value;
-            if (v == Visibility.Hidden) {
-                return Stretch.None;
-            }
-            return Stretch.Fill;
-
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) {
-            throw new NotImplementedException();
-        }
-    }
+   
 }
