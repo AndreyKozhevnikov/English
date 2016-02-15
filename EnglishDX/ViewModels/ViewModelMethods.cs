@@ -427,7 +427,7 @@ namespace EnglishDX {
             throw new NotImplementedException();
         }
         private void ClearGridControlFilter() {
-             ClearFilterServiceInst.ClearFilter();
+             ClearFilterService.ClearFilter();
         }
 
        
