@@ -244,8 +244,16 @@ namespace EnglishDX {
             set { _createNewCircleCommand = value; }
         }
 
-       
-
+        IServiceContainer serviceContainer = null;
+        protected IServiceContainer ServiceContainer {
+            get {
+                if (serviceContainer == null)
+                    serviceContainer = new ServiceContainer(this);
+                return serviceContainer;
+            }
+        }
+        IServiceContainer ISupportServices.ServiceContainer { get { return ServiceContainer; } }
+        IClearFilterService ClearFilterServiceInst { get { return ServiceContainer.GetService<IClearFilterService>(); } }
 
 
     }

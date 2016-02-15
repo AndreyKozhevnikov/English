@@ -24,7 +24,7 @@ using System.Windows.Automation;
 
 
 namespace EnglishDX {
-    public partial class ViewModel : BindableBase {
+    public partial class ViewModel : BindableBase, ISupportServices {
         public const int COUNTWORKFORONECYCLE = 50;
         public static bool IsTestMode = false;
         public ViewModel() {
@@ -312,6 +312,7 @@ namespace EnglishDX {
                 case 1:
                     if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
+                        ClearGridControlFilter();
                     }
                     if (e.Key == Key.NumPad7 || e.Key == Key.D7) {
                         CurrentWordForAllWordsGrid.OpenInGoogleTranslate();
@@ -425,9 +426,12 @@ namespace EnglishDX {
         private void CreateNewCircle() {
             throw new NotImplementedException();
         }
+        private void ClearGridControlFilter() {
+             ClearFilterServiceInst.ClearFilter();
+        }
 
+       
     }
-
 
 
 
