@@ -424,7 +424,15 @@ namespace EnglishDX {
             generalEntity.SaveChanges();
         }
         private void CreateNewCircle() {
-            throw new NotImplementedException();
+            var lst = ListAllWords.Where(x => x.Complexity == 2).ToList();
+            foreach (var wrd in lst) {
+                wrd.IsAnswered = false;
+                wrd.LastRightAnswers = 0;
+                wrd.AllAnswers = 0;
+                var str = "complon" + DateTime.Now.ToShortDateString();
+                wrd.Tag = str;
+            }
+            GlobalSaveChanges();
         }
         private void ClearGridControlFilter() {
              ClearFilterService.ClearFilter();

@@ -142,6 +142,15 @@ namespace EnglishDX {
             }
         }
 
+        public string Tag {
+            get {
+                return parentWordEntity.Tag;
+            }
+            set {
+                parentWordEntity.Tag = value;
+            }
+        }
+
         #endregion
         public MyWord() //конструктор
         {
