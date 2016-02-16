@@ -235,14 +235,18 @@
                         </Grid.RowDefinitions>
 
                         <dxg:GridControl ItemsSource="{Binding DayStatItems}" AutoGenerateColumns="AddNew"/>
-                        <StackPanel Grid.Row="1">
-                            <dxe:ListBoxEdit ItemsSource="{Binding WordsBeforeEndList}" />
-                            <Button Content="UpdateIndexes" Command="{Binding UpdateIndexesCommand}"/>
-                            <Button Content="CreateNewCircle" Command="{Binding CreateNewCircleCommand}"/>
-                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <dxe:ListBoxEdit ItemsSource="{Binding WordsBeforeEndList}"  />
+                            <StackPanel Grid.Row="1">
+                                <Button Content="UpdateIndexes" Command="{Binding UpdateIndexesCommand}"/>
+                                <Button Content="CreateNewCircle" Command="{Binding CreateNewCircleCommand}"/>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
-
-
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutGroup>
