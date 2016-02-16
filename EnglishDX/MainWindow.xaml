@@ -86,11 +86,11 @@
                                 </Border.Style>
                                 <Grid MaxHeight="{Binding ActualHeight,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Border}}">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="30"/>
                                         <RowDefinition  />
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <dxe:CheckEdit EditValue="{Binding OldWord.IsEasy,Mode=TwoWay}" Content="IsEasy" Grid.Row="0" />
+                                    <Label  Content="{Binding OldWord.AnswerHistory}" Grid.Row="0" />
                                     <UniformGrid Rows="0" Columns="1" Grid.Row="1">
                                         <Viewbox>
                                             <Label Content="{Binding OldWord.Word}" 

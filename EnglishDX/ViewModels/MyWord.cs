@@ -22,7 +22,7 @@ namespace EnglishDX {
         bool _isRightAnswer;
         bool _isChanged;
         public Datum parentWordEntity;
-
+        
 
         #region properties
         public int ID {
@@ -151,6 +151,17 @@ namespace EnglishDX {
             }
         }
 
+        public string AnswerHistory {
+            get {
+                return parentWordEntity.AnswerHistory;
+            }
+            set {
+                parentWordEntity.AnswerHistory = value;
+            }
+        }
+
+
+
         #endregion
         public MyWord() //конструктор
         {
@@ -179,6 +190,8 @@ namespace EnglishDX {
             IsChanged = false;
         }
 
+        
+
         public void GoToStat() {
             if (IsRightAnswer) {
                 AllRightAnswers++;
@@ -196,7 +209,7 @@ namespace EnglishDX {
             }
 
             Logs.Write(this, IsRightAnswer);
-
+            AddAnswerHistory(IsRightAnswer);
         }
 
         public void Del() //метод удаления
@@ -249,6 +262,19 @@ namespace EnglishDX {
         public override string ToString() {
             return string.Format("{0} - {1} - {2}", Word, LastRightAnswers, AllAnswers);
         }
+
+        void AddAnswerHistory(bool b) {
+            if (AnswerHistory == null)
+                AnswerHistory = "";
+            if (AnswerHistory.Length >= 5) {
+                AnswerHistory = AnswerHistory.Remove(0, 1);
+            }
+            if (b)
+                AnswerHistory = AnswerHistory + "X";
+            else
+                AnswerHistory = AnswerHistory + "O";
+        }
+        //AnswerHistory	nchar(11)	Checked
     }
 
 

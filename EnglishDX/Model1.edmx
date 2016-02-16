@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="EngBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EngBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Data">
           <Key>
             <PropertyRef Name="id" />
@@ -22,6 +22,7 @@
           <Property Name="IsAnswered" Type="bit" Nullable="false" />
           <Property Name="RandomNumber" Type="int" />
           <Property Name="Tag" Type="varchar(max)" />
+          <Property Name="AnswerHistory" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="DayStats">
           <Key>
@@ -121,6 +122,7 @@
           <Property Name="RandomNumber" Type="Int32" />
           <Property Name="Tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Logs" Relationship="EngBaseModel.FK_Logs_Data" FromRole="Datum" ToRole="Log" />
+          <Property Name="AnswerHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DayStat">
           <Key>
@@ -208,6 +210,7 @@
           <EntitySetMapping Name="Data">
             <EntityTypeMapping TypeName="EngBaseModel.Datum">
               <MappingFragment StoreEntitySet="Data">
+                <ScalarProperty Name="AnswerHistory" ColumnName="AnswerHistory" />
                 <ScalarProperty Name="Tag" ColumnName="Tag" />
                 <ScalarProperty Name="RandomNumber" ColumnName="RandomNumber" />
                 <ScalarProperty Name="id" ColumnName="id" />

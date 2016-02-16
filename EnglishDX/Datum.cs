@@ -32,6 +32,7 @@ namespace EnglishDX
         public bool IsAnswered { get; set; }
         public Nullable<int> RandomNumber { get; set; }
         public string Tag { get; set; }
+        public string AnswerHistory { get; set; }
     
         public virtual ICollection<Log> Logs { get; set; }
     }
