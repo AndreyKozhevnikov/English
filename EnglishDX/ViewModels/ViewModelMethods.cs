@@ -431,6 +431,7 @@ namespace EnglishDX {
                 wrd.AllAnswers = 0;
                 var str = "complon" + DateTime.Now.ToShortDateString();
                 wrd.Tag = str;
+                wrd.AnswerHistory = null;
             }
             GlobalSaveChanges();
         }
