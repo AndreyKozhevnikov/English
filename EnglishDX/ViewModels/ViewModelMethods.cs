@@ -281,8 +281,10 @@ namespace EnglishDX {
                         case Key.D4:
                             if (OldWord == null)
                                 return;
+                       
                             CurrentWordForAllWordsGrid = OldWord;
                             SelectedTabIndex = 1;
+                            ManageGridControlService.SetSearchPanelFocus();
                             break;
 
                         case Key.NumPad5:
@@ -312,7 +314,8 @@ namespace EnglishDX {
                 case 1:
                     if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
-                        ClearGridControlFilter();
+                        ManageGridControlService.ClearSearchString();
+                        ManageGridControlService.ClearFilter();
                     }
                     if (e.Key == Key.NumPad7 || e.Key == Key.D7) {
                         CurrentWordForAllWordsGrid.OpenInGoogleTranslate();
@@ -435,9 +438,7 @@ namespace EnglishDX {
             }
             GlobalSaveChanges();
         }
-        private void ClearGridControlFilter() {
-             ClearFilterService.ClearFilter();
-        }
+      
 
        
     }

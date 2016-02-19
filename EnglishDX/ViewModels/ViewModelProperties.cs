@@ -253,7 +253,7 @@ namespace EnglishDX {
             }
         }
         IServiceContainer ISupportServices.ServiceContainer { get { return ServiceContainer; } }
-        IClearFilterService ClearFilterService { get { return ServiceContainer.GetService<IClearFilterService>(); } }
+        IManageGridControlService ManageGridControlService { get { return ServiceContainer.GetService<IManageGridControlService>(); } }
 
 
     }

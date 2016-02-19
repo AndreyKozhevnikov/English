@@ -198,7 +198,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EngbaseEntities.cs" />
-    <Compile Include="ViewModels\IClearFilterService.cs" />
+    <Compile Include="ViewModels\IManageGridControlService.cs" />
     <Compile Include="ViewModels\Logs.cs" />
     <Compile Include="ViewModels\MyWord.cs" />
     <Compile Include="ViewModels\NewWordTemplate.cs" />
