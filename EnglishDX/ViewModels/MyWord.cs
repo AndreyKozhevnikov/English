@@ -17,7 +17,7 @@ namespace EnglishDX {
     public class MyWord : BindableBase, IComparable //класс слово
     {
         public static int RIGHTANSWERSTOCOMPLETE = 5;
-        public static int FIRSTRIGHTANSWERSTOCOMPLETE = 2;
+        public static int FIRSTRIGHTANSWERSTOCOMPLETE = 1;
 
         bool _isRightAnswer;
         bool _isChanged;
