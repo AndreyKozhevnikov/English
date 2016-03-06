@@ -28,21 +28,18 @@ namespace EnglishDX {
         public const int COUNTWORKFORONECYCLE = 50;
         public static bool IsTestMode = false;
         public ViewModel() {
-
+            ConnectToDataBase();
+            NewDay();
+           
+        }
+        public void NewDay() {
             rnd = new Random();
             NewWordToEnter = new NewWordTemplate();
-            ConnectToDataBase();
-
-
-
             Logs.Write("programm started");
             CreateNewDuration(); //говнокод
-
             UpdateStatistic();
             CreateDayStatItem(); //статистика по текущему дню
             StartWork();
-
-
             SelectedTabIndex = 1;
         }
 

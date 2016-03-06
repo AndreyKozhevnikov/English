@@ -47,8 +47,9 @@ namespace EnglishDX {
         ICommand _enterPastedWordsToBaseCommand;
         ICommand _updateIndexesCommand;
         ICommand _createNewCircleCommand;
+        ICommand _newDayCommand;
 
-    
+  
   
       
         
@@ -246,6 +247,14 @@ namespace EnglishDX {
                 return _createNewCircleCommand; }
             set { _createNewCircleCommand = value; }
         }
+        public ICommand NewDayCommand {
+            get {
+                if (_newDayCommand == null)
+                    _newDayCommand =new DelegateCommand(NewDay);
+                return _newDayCommand; }
+            set { _newDayCommand = value; }
+        }
+    
 
         IServiceContainer serviceContainer = null;
         protected IServiceContainer ServiceContainer {

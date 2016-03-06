@@ -244,6 +244,7 @@
                             <StackPanel Grid.Row="1">
                                 <Button Content="UpdateIndexes" Command="{Binding UpdateIndexesCommand}"/>
                                 <Button Content="CreateNewCircle" Command="{Binding CreateNewCircleCommand}"/>
+                                <Button Content="NewDate" Command="{Binding NewDayCommand}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>
