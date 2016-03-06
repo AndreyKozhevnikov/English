@@ -24,7 +24,7 @@ using System.Windows.Automation;
 
 
 namespace EnglishDX {
-    public partial class ViewModel : BindableBase, ISupportServices {
+    public partial class ViewModel :BindableBase, ISupportServices {
         public const int COUNTWORKFORONECYCLE = 50;
         public static bool IsTestMode = false;
         public ViewModel() {
@@ -33,7 +33,7 @@ namespace EnglishDX {
             NewWordToEnter = new NewWordTemplate();
             ConnectToDataBase();
 
-           
+
 
             Logs.Write("programm started");
             CreateNewDuration(); //говнокод
@@ -240,12 +240,12 @@ namespace EnglishDX {
 
 
         ObservableCollection<MyWord> WordsBeforeEndListCound() {
-            var v0= ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FIRSTRIGHTANSWERSTOCOMPLETE - 1);
-           // var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE);
+            var v0 = ListWordsForWork.Where(w => w.Complexity == 2 && w.AllAnswers == w.LastRightAnswers && w.AllAnswers == MyWord.FIRSTRIGHTANSWERSTOCOMPLETE - 1);
+            // var v = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE);
             var v1 = ListWordsForWork.Where(w => w.Complexity == 2 && w.LastRightAnswers >= MyWord.RIGHTANSWERSTOCOMPLETE);
             var v2 = v1.Concat(v0);
 
-            return new ObservableCollection<MyWord>( v2);
+            return new ObservableCollection<MyWord>(v2);
         }
 
 
@@ -281,10 +281,10 @@ namespace EnglishDX {
                         case Key.D4:
                             if (OldWord == null)
                                 return;
-                       
+
                             CurrentWordForAllWordsGrid = OldWord;
                             SelectedTabIndex = 1;
-                            ManageGridControlService.SetSearchPanelFocus();
+         
                             break;
 
                         case Key.NumPad5:
@@ -314,8 +314,6 @@ namespace EnglishDX {
                 case 1:
                     if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
-                        ManageGridControlService.ClearSearchString();
-                        ManageGridControlService.ClearFilter();
                     }
                     if (e.Key == Key.NumPad7 || e.Key == Key.D7) {
                         CurrentWordForAllWordsGrid.OpenInGoogleTranslate();
@@ -323,7 +321,15 @@ namespace EnglishDX {
                     break;
             }
         }
-
+        private void OnSelectedTabIndexChanged(int value) {
+            if (value == 1) {
+                if (ManageGridControlService == null)
+                    return;
+                ManageGridControlService.ClearSearchString();
+                ManageGridControlService.ClearFilter();
+                ManageGridControlService.SetSearchPanelFocus();
+            }
+        }
 
         private void CountApproachesCount() {
             if (CurrentWordsCount > 20) {
@@ -438,9 +444,9 @@ namespace EnglishDX {
             }
             GlobalSaveChanges();
         }
-      
 
-       
+
+
     }
 
 

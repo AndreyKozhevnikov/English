@@ -111,9 +111,12 @@ namespace EnglishDX {
             get { return _selecteTabIndex; }
             set {
                 _selecteTabIndex = value;
+                OnSelectedTabIndexChanged(value);
                 RaisePropertyChanged("SelectedTabIndex");
             }
         }
+
+      
         public bool IsCurrentWordExampleVisible {
             get { return _isCurrentWordExampleVisible; }
             set {
