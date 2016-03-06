@@ -284,7 +284,7 @@ namespace EnglishDX {
 
                             CurrentWordForAllWordsGrid = OldWord;
                             SelectedTabIndex = 1;
-         
+
                             break;
 
                         case Key.NumPad5:
@@ -312,6 +312,12 @@ namespace EnglishDX {
                     }
                     break;
                 case 1:
+                    if ((e.Key >= Key.D0 && e.Key <= Key.D9) ||
+                        (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||
+                        e.Key == Key.Decimal) {
+                        e.Handled = true;
+                    }
+
                     if (e.Key == Key.NumPad4 || e.Key == Key.D4) {
                         SelectedTabIndex = 0;
                     }
