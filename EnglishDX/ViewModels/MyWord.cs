@@ -17,7 +17,7 @@ namespace EnglishDX {
     public class MyWord : BindableBase, IComparable //класс слово
     {
         public static int RIGHTANSWERSTOCOMPLETE = 5;
-        public static int FIRSTRIGHTANSWERSTOCOMPLETE = 1;
+        public static int FIRSTRIGHTANSWERSTOCOMPLETE = 2;
 
         bool _isRightAnswer;
         bool _isChanged;
@@ -208,7 +208,7 @@ namespace EnglishDX {
                 Complexity = 2;
             }
 
-            IsAnswered = true; // simple mode
+          //  IsAnswered = true; // simple mode
             Logs.Write(this, IsRightAnswer);
             AddAnswerHistory(IsRightAnswer);
         }
