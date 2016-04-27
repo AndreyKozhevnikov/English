@@ -267,7 +267,7 @@ namespace EnglishDX {
         void AddAnswerHistory(bool b) {
             if (AnswerHistory == null)
                 AnswerHistory = "";
-            if (AnswerHistory.Length >= 5) {
+            if (AnswerHistory.Length >= 15) {
                 AnswerHistory = AnswerHistory.Remove(0, 1);
             }
             if (b)
