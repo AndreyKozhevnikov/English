@@ -140,8 +140,10 @@
                 <dxlc:LayoutGroup Header="Words" >
                     <dxlc:LayoutGroup Orientation="Vertical">
                         <dxlc:LayoutGroup >
-                            <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" Name="grdWords" ItemsSource="{Binding ListAllWords}" 
-                                              CurrentItem="{Binding CurrentWordForAllWordsGrid,Mode=TwoWay}"
+                            <dxg:GridControl  AutoGenerateColumns="None" MaxHeight="500" 
+                                              Name="grdWords" 
+                                              ItemsSource="{Binding ListAllWords}" 
+                                              CurrentItem="{Binding CurrentWordForAllWordsGrid}"
                                          AllowLiveDataShaping="True"
                                               CurrentItemChanged="gr2_CurrentItemChanged_1" 
                                               >
@@ -157,12 +159,14 @@
                                     <dxg:GridColumn FieldName="IsChanged" Width="30" Header="ch" ReadOnly="True"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.TotalSummary>
-                                    <dxg:GridSummaryItem FieldName="Word" ShowInColumn="Word" SummaryType="Count"/>
+                                    <dxg:GridSummaryItem FieldName="Word" ShowInColumn="Word" 
+                                                         SummaryType="Count"/>
                                 </dxg:GridControl.TotalSummary>
                                 <dxg:GridControl.View>
                                     <dxg:TableView ShowSearchPanelMode="Always" AutoWidth="True"
                                                    ShowTotalSummary="True"
-                                                   ShowGroupPanel="False"  SearchDelay="100" SearchPanelFindFilter="StartsWith"
+                                                   ShowGroupPanel="False"  SearchDelay="100"
+                                                   SearchPanelFindFilter="StartsWith"
                                                    
                                                    />
                                 </dxg:GridControl.View>

@@ -325,12 +325,14 @@ namespace EnglishDX {
             }
         }
         private void OnSelectedTabIndexChanged(int value) {
+            if (ManageGridControlService == null)
+                return;
             if (value == 1) {
-                if (ManageGridControlService == null)
-                    return;
+                ManageGridControlService.SetSearchPanelFocus();
+            }
+            if (value == 0) {
                 ManageGridControlService.ClearSearchString();
                 ManageGridControlService.ClearFilter();
-                ManageGridControlService.SetSearchPanelFocus();
             }
         }
 
