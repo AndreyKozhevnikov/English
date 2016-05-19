@@ -98,6 +98,7 @@ namespace EnglishDX {
             if (v == null) {
                 CurrentDayItem = new DayStatItem(DateTime.Today);
                 DayStatItems.Insert(0, CurrentDayItem);
+                RaisePropertiesChanged("DayStatItems");
             }
             else {
                 CurrentDayItem = v;
