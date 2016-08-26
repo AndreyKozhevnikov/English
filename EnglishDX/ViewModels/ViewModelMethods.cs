@@ -49,18 +49,20 @@ namespace EnglishDX {
 
         private static void ConnectToDataBase() {
             string machineName = System.Environment.MachineName;
-            if (machineName == "KOZHEVNIKOV-W8") {
+            if (IsTestMode) {
+                if (machineName == "KOZHEVNIKOV-W10")
+                    generalEntity = new EngBaseEntities1("EngBaseEntitiesWorkTest");
+                else
+                    generalEntity = new EngBaseEntities1("EngBaseEntitiesHomeTest");
+                return;
+            }
+            if (machineName == "KOZHEVNIKOV-W10") {
                 generalEntity = new EngBaseEntities1("EngBaseEntitiesWork");
             }
             else {
                 generalEntity = new EngBaseEntities1("EngBaseEntitiesHome");
             }
-            if (IsTestMode) {
-                if (machineName == "KOZHEVNIKOV-W8")
-                    generalEntity = new EngBaseEntities1("EngBaseEntitiesWorkTest");
-                else
-                    generalEntity = new EngBaseEntities1("EngBaseEntitiesHomeTest");
-            }
+          
         }
 
         private void StartWork() {
