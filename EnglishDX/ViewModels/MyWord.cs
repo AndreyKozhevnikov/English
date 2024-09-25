@@ -208,7 +208,7 @@ namespace EnglishDX {
                 Complexity = 2;
             }
 
-            IsAnswered = true; // simple mode
+           // IsAnswered = true; // simple mode !!!ct 
             Logs.Write(this, IsRightAnswer);
             AddAnswerHistory(IsRightAnswer);
         }

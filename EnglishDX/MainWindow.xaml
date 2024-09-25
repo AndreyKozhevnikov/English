@@ -45,9 +45,9 @@
                                             <DataTrigger Binding="{Binding CurrentWord.IsRightAnswer}" Value="False">
                                                 <Setter Property="Background" Value="{StaticResource IsRightAnswerColor}"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding CurrentWord.IsEasy}" Value="True">
+                                            <!--<DataTrigger Binding="{Binding CurrentWord.IsEasy}" Value="True">
                                                 <Setter Property="Background" Value="{StaticResource IsEasyColor}"/>
-                                            </DataTrigger>
+                                            </DataTrigger>-->
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
@@ -71,16 +71,16 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <!--OldWord-->
-                            <Border BorderThickness="2" Margin="5"  BorderBrush="Blue">
+                            <Border BorderThickness="2" Margin="5"  BorderBrush="Blue"> 
                                 <Border.Style>
                                     <Style TargetType="{x:Type Border}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding OldWord.IsRightAnswer}" Value="False">
                                                 <Setter Property="Background" Value="{StaticResource IsRightAnswerColor}"/>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding OldWord.IsEasy}" Value="True">
+                                            <!--<DataTrigger Binding="{Binding OldWord.IsEasy}" Value="True">
                                                 <Setter Property="Background" Value="{StaticResource IsEasyColor}"/>
-                                            </DataTrigger>
+                                            </DataTrigger>-->
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
