@@ -271,6 +271,11 @@ namespace EnglishDX {
                         case Key.D1:
                             WorkCycle();
                             break;
+                        case Key.NumPad2:
+                        case Key.D2:
+                            WorkCycle();
+                            OldWord.IsEasy = true;
+                            break;
                         case Key.NumPad3:
                         case Key.D3:
                             if (OldWord == null)

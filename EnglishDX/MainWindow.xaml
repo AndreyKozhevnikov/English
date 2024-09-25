@@ -78,9 +78,9 @@
                                             <DataTrigger Binding="{Binding OldWord.IsRightAnswer}" Value="False">
                                                 <Setter Property="Background" Value="{StaticResource IsRightAnswerColor}"/>
                                             </DataTrigger>
-                                            <!--<DataTrigger Binding="{Binding OldWord.IsEasy}" Value="True">
+                                            <DataTrigger Binding="{Binding OldWord.IsEasy}" Value="True">
                                                 <Setter Property="Background" Value="{StaticResource IsEasyColor}"/>
-                                            </DataTrigger>-->
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
