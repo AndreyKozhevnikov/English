@@ -50,13 +50,13 @@ namespace EnglishDX {
         private static void ConnectToDataBase() {
             string machineName = System.Environment.MachineName;
             if (IsTestMode) {
-                if (machineName == "KOZHEVNIKOV-W10")
+                if (machineName == "KOZHEVNIKOV-NBX")
                     generalEntity = new EngBaseEntities1("EngBaseEntitiesWorkTest");
                 else
                     generalEntity = new EngBaseEntities1("EngBaseEntitiesHomeTest");
                 return;
             }
-            if (machineName == "KOZHEVNIKOV-W10") {
+            if (machineName == "KOZHEVNIKOV-NBX") {
                 generalEntity = new EngBaseEntities1("EngBaseEntitiesWork");
             }
             else {
