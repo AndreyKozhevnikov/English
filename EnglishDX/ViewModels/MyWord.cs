@@ -229,7 +229,7 @@ namespace EnglishDX {
 
 
         public void OpenInGoogleTranslate() {
-            string st = string.Format("http://translate.google.com/#en/ru/{0}", Word);
+            string st = string.Format("https://context.reverso.net/translation/english-russian/{0}", Word);
             Process.Start(st);
 
 
@@ -267,7 +267,7 @@ namespace EnglishDX {
         void AddAnswerHistory(bool b) {
             if (AnswerHistory == null)
                 AnswerHistory = "";
-            if (AnswerHistory.Length >= 15) {
+            if (AnswerHistory.Length >= 50) {
                 AnswerHistory = AnswerHistory.Remove(0, 1);
             }
             if (b)
