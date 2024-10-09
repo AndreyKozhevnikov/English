@@ -123,6 +123,17 @@ namespace EnglishDX {
             ListAllWords = new ObservableCollection<MyWord>(v);
             RaisePropertiesChanged("ListAllWords");
         }
+        public static void Shuffle<T>(IList<T> list) {
+            var rng = new Random(DateTime.Now.Millisecond);
+            int n = list.Count;
+            while(n > 1) {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
         void GetWordsForWork() {
             Logs.Write("create new round");
             GlobalSaveChanges();
@@ -133,7 +144,9 @@ namespace EnglishDX {
                 ListWordsForWork = new ObservableCollection<MyWord>();
             List<MyWord> tmpList = null;
 
-            var AllHardWords = ListAllWords.Where(x => x.Complexity == 2 && x.IsAnswered == false).OrderBy(x => x.RandomNumber);
+            var AllHardWords = ListAllWords.Where(x => x.Complexity == 2 && x.IsAnswered == false).OrderBy(x => x.RandomNumber).ToList();
+           // var AllHardWords = ListAllWords.Where(x => x.Complexity == 2 && x.IsAnswered == false && x.AllAnswers==0).OrderBy(x => x.RandomNumber).ToList();
+       //     Shuffle(AllHardWords); //!!!todo remove after check all words
             HardWordsCount = AllHardWords.Count();
             tmpList = AllHardWords.Take(COUNTWORKFORONECYCLE).ToList();
             if (tmpList.Count == 0) {
@@ -274,7 +287,10 @@ namespace EnglishDX {
                         case Key.NumPad2:
                         case Key.D2:
                             WorkCycle();
-                            OldWord.IsEasy = true;
+                            if(OldWord != null) {
+                                OldWord.IsEasy = true;
+                                OldWord.Complexity = 1;
+                            }
                             break;
                         case Key.NumPad3:
                         case Key.D3:
@@ -294,8 +310,14 @@ namespace EnglishDX {
 
                         case Key.NumPad5:
                         case Key.D5:
-                            if (OldWord != null)
+                            if(OldWord != null) {
                                 OldWord.IsEasy = !OldWord.IsEasy;
+                                if(OldWord.IsEasy) {
+                                    OldWord.Complexity = 1;
+                                } else {
+                                    OldWord.Complexity = 2;
+                                }
+                            }
                             break;
                         case Key.NumPad7:
                         case Key.D7:
@@ -453,7 +475,7 @@ namespace EnglishDX {
                 wrd.AllAnswers = 0;
                 var str = "complon" + DateTime.Now.ToShortDateString();
                 wrd.Tag = str;
-                wrd.AnswerHistory = null;
+               // wrd.AnswerHistory = null;
             }
             GlobalSaveChanges();
         }
