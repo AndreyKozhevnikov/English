@@ -287,10 +287,10 @@ namespace EnglishDX {
                         case Key.NumPad2:
                         case Key.D2:
                             WorkCycle();
-                            if(OldWord != null) {
-                                OldWord.IsEasy = true;
-                                OldWord.Complexity = 1;
-                            }
+                            //if(OldWord != null) {
+                            //    OldWord.IsEasy = true;
+                            //    OldWord.Complexity = 1;
+                            //}
                             break;
                         case Key.NumPad3:
                         case Key.D3:

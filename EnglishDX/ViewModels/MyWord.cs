@@ -199,7 +199,7 @@ namespace EnglishDX {
                     IsAnswered = true;
                 }
                 if (LastRightAnswers >= FIRSTRIGHTANSWERSTOCOMPLETE && LastRightAnswers == AllAnswers) {
-                    Complexity = 1;
+                 //   Complexity = 1;
                     IsAnswered = true;
                 }
             }
@@ -267,7 +267,7 @@ namespace EnglishDX {
         void AddAnswerHistory(bool b) {
             if (AnswerHistory == null)
                 AnswerHistory = "";
-            if (AnswerHistory.Length >= 50) {
+            if (AnswerHistory.Length >= 250) {
                 AnswerHistory = AnswerHistory.Remove(0, 1);
             }
             if (b)
