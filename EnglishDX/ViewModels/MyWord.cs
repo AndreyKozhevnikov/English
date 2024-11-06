@@ -201,6 +201,7 @@ namespace EnglishDX {
                 if (LastRightAnswers >= FIRSTRIGHTANSWERSTOCOMPLETE && LastRightAnswers == AllAnswers) {
                  //   Complexity = 1;
                     IsAnswered = true;
+                    AnswerHistory = AnswerHistory + "|";
                 }
             }
             else {
