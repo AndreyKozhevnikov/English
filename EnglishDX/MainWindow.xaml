@@ -166,7 +166,7 @@
                                     <dxg:TableView ShowSearchPanelMode="Always" AutoWidth="True"
                                                    ShowTotalSummary="True"
                                                    ShowGroupPanel="False"  SearchDelay="100"
-                                                   SearchPanelFindFilter="StartsWith"
+                                                   SearchPanelFindFilter="Contains"
                                                    
                                                    />
                                 </dxg:GridControl.View>
