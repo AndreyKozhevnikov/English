@@ -201,7 +201,7 @@ namespace EnglishDX {
                 if (LastRightAnswers >= FIRSTRIGHTANSWERSTOCOMPLETE && LastRightAnswers == AllAnswers) {
                  //   Complexity = 1;
                     IsAnswered = true;
-                    AnswerHistory = AnswerHistory + "|";
+                   
                 }
             }
             else {
@@ -212,6 +212,9 @@ namespace EnglishDX {
            // IsAnswered = true; // simple mode !!!ct 
             Logs.Write(this, IsRightAnswer);
             AddAnswerHistory(IsRightAnswer);
+            if(IsAnswered) {
+                AnswerHistory = AnswerHistory + "|";
+            }
         }
 
         public void Del() //метод удаления
