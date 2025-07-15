@@ -445,7 +445,7 @@ namespace EnglishDX {
             string[] listString = clipboardData.Split(new string[] { "\r\n" }, StringSplitOptions.None);
             foreach (string oneline in listString) {
                 string[] wordMembers = oneline.Split(new string[] { "\t" }, StringSplitOptions.None);
-                if (wordMembers.Count() == 3) {
+                if (wordMembers.Count() == 3 && !string.IsNullOrEmpty(wordMembers[0])) {
                     string word = wordMembers[0];
                     string translate = wordMembers[1];
                     string example = wordMembers[2];
