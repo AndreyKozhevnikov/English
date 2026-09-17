@@ -10,9 +10,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Word" Type="varchar(max)" />
+          <Property Name="Word" Type="nvarchar(max)" />
           <Property Name="Translate" Type="nvarchar(max)" />
-          <Property Name="Example" Type="varchar(max)" />
+          <Property Name="Example" Type="nvarchar(max)" />
           <Property Name="AllRightAnswers" Type="int" Nullable="false" />
           <Property Name="AllWrongAnswers" Type="int" Nullable="false" />
           <Property Name="LastRightAnswers" Type="int" Nullable="false" />
@@ -109,9 +109,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Translate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Example" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Example" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AllRightAnswers" Type="Int32" Nullable="false" />
           <Property Name="AllWrongAnswers" Type="Int32" Nullable="false" />
           <Property Name="LastRightAnswers" Type="Int32" Nullable="false" />
